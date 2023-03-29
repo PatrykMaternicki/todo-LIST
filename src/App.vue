@@ -1,11 +1,10 @@
 <script setup lang="ts">
-import { storeToRefs } from 'pinia';
-import { useTodoListStore } from '@/stores/todoList';
-import Item from '@/components/Item.vue';
+import { storeToRefs } from "pinia";
+import { useTodoListStore } from "@/stores/todoList";
+import Item from "@/components/Item.vue";
 
-
-const todoListStore = useTodoListStore()
-const { todoList } = storeToRefs(todoListStore)
+const todoListStore = useTodoListStore();
+const { showInCompleteTodoList } = storeToRefs(todoListStore);
 todoListStore.get();
 </script>
 <template>
@@ -18,8 +17,12 @@ todoListStore.get();
           md="12"
           class="grey lighten-2 fill-height d-flex flex-column justify-center align-center"
         >
-            <Item :key="item.userId" :item="item" v-for="item in todoList">
-            </Item>
+          <Item
+            :key="item.userId"
+            :item="item"
+            v-for="item in showInCompleteTodoList"
+          >
+          </Item>
         </v-col>
       </v-row>
     </v-container>
