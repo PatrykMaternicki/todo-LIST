@@ -1,11 +1,14 @@
 <template>
-  <div class="d-flex">
+  <div class="d-flex justify-center">
     <v-btn
       :disabled="hasLeftArrowDisabled"
       icon="mdi-arrow-left"
       size="small"
       @click="todoListStore.previousPage()"
     />
+    <p>
+        {{ currentPage }} in {{ pages }}
+    </p>
     <v-btn
       :disabled="hasRightArrowDisabled"
       icon="mdi-arrow-right"

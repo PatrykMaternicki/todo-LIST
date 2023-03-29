@@ -9,7 +9,7 @@
         variant="text"
         color="teal-accent-4"
         :disabled="text === item.title"
-        @click="todoListStore.edit(item.id, text)"
+        @click="handleSave"
       >
         Save
       </v-btn>
@@ -36,4 +36,8 @@ const todoListStore = useTodoListStore();
 const props = defineProps<{ item: Item }>();
 const text = ref(props.item.title);
 const edited = ref(false);
+const handleSave = () => {
+    todoListStore.edit(props.item.id, text.value)
+    edited.value = false;
+}
 </script>

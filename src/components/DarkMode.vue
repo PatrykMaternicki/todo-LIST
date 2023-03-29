@@ -15,8 +15,7 @@
 <script setup lang="ts">
 import { useAppStore } from "@/stores/app";
 import { storeToRefs } from "pinia";
-import { computed, getCurrentInstance } from "vue";
-const instance = getCurrentInstance();
+import { computed } from "vue";
 const appStore = useAppStore();
 const { dark } = storeToRefs(appStore);
 const toggleText = computed(() => (dark.value ? "Light" : "Dark"));

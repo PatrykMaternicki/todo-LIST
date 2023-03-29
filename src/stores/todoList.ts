@@ -7,7 +7,7 @@ export const useTodoListStore = defineStore("todoList", {
     currentPage: 0 as Number,
     key: "" as string,
     text: "" as string,
-    showOnPage: 10 as Number,
+    showOnPage: 5 as Number,
     pages: 0,
   }),
 
@@ -56,12 +56,18 @@ export const useTodoListStore = defineStore("todoList", {
       this.currentPage--;
     },
 
+    reset() {
+      this.currentPage = 0;
+    },
+
     add(item: Omit<Item, "id">) {
-      this.todoList.push({ ...item, id: this.todoList.length });
+      // sposob na stworzenie unikatowego id
+      this.todoList.push({ ...item, id: this.todoList.length + 40 });
     },
 
     edit(id: number, text: string) {
       const index = this.todoList.findIndex((item) => item.id === id);
+      console.log(index)
       this.todoList[index].title = text;
     },
 

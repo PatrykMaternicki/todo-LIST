@@ -1,9 +1,9 @@
 <template>
-  <div :style="{ width: '60%' }">
+  <div>
     <v-text-field
       label="Search by title"
       v-model="text"
-      @input="($event: HTMLInputElement) => todoListStore.findBy($event.target.value)"
+      @input="handleInput"
     />
     <div class="text-center">
       <v-btn
@@ -21,4 +21,9 @@ import { useTodoListStore } from "@/stores/todoList";
 import { storeToRefs } from "pinia";
 const todoListStore = useTodoListStore();
 const { text } = storeToRefs(todoListStore);
+
+const handleInput = (event: HTMLInputElement) => {
+  todoListStore.reset()
+  todoListStore.findBy(event.target.value)
+}
 </script>

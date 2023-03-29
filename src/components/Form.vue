@@ -1,5 +1,5 @@
 <template>
-  <div :style="{ width: '60%' }">
+  <div>
     <v-form @submit.prevent="addNewItem" v-model="valid" ref="form">
       <v-container>
         <v-row>
@@ -14,7 +14,7 @@
           </v-col>
         </v-row>
       </v-container>
-      <div :style="{ width: '60%' }" class="ma-auto">
+      <div class="ma-auto">
         <v-btn type="submit" block class="mt-2">Add</v-btn>
       </div>
     </v-form>
