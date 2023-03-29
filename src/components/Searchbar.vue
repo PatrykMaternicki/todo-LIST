@@ -1,10 +1,6 @@
 <template>
   <div>
-    <v-text-field
-      label="Search by title"
-      v-model="text"
-      @input="handleInput"
-    />
+    <v-text-field label="Search by title" v-model="text" @input="handleInput" />
     <div class="text-center">
       <v-btn
         variant="text"
@@ -22,8 +18,8 @@ import { storeToRefs } from "pinia";
 const todoListStore = useTodoListStore();
 const { text } = storeToRefs(todoListStore);
 
-const handleInput = (event: HTMLInputElement) => {
-  todoListStore.reset()
-  todoListStore.findBy(event.target.value)
-}
+const handleInput = (event: Event) => {
+  todoListStore.reset();
+  todoListStore.findBy((event.target as HTMLInputElement).value);
+};
 </script>

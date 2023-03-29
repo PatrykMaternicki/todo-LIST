@@ -6,9 +6,7 @@
       size="small"
       @click="todoListStore.previousPage()"
     />
-    <p>
-        {{ currentPage }} in {{ pages }}
-    </p>
+    <p>{{ currentPage }} in {{ pages }}</p>
     <v-btn
       :disabled="hasRightArrowDisabled"
       icon="mdi-arrow-right"

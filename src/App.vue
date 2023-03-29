@@ -8,9 +8,8 @@ import Form from "@/components/Form.vue";
 import DarkMode from "@/components/DarkMode.vue";
 import { useAppStore } from "@/stores/app";
 
-const todoListStore = useTodoListStore();
 const appStore = useAppStore();
-const { getList } = storeToRefs(todoListStore);
+const { getList } = storeToRefs(useTodoListStore());
 const { dark } = storeToRefs(appStore);
 todoListStore.get();
 </script>
@@ -25,11 +24,16 @@ todoListStore.get();
           md="12"
           class="grey lighten-2 fill-height d-flex flex-column justify-center align-center"
         >
-          <div class="mt-2" :style="{width: '60%'}">
-          <Searchbar />
-          <Form />
-          <Arrows class="mb-3 mt-3"/>
-            <Item class="mt-3 mb-3" :key="item.userId" :item="item" v-for="item in getList" />
+          <div class="mt-2" :style="{ width: '60%' }">
+            <Searchbar />
+            <Form />
+            <Arrows class="mb-3 mt-3" />
+            <Item
+              class="mt-3 mb-3"
+              :key="item.userId"
+              :item="item"
+              v-for="item in getList"
+            />
           </div>
           <Arrows />
         </v-col>

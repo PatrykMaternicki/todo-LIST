@@ -37,7 +37,7 @@ const props = defineProps<{ item: Item }>();
 const text = ref(props.item.title);
 const edited = ref(false);
 const handleSave = () => {
-    todoListStore.edit(props.item.id, text.value)
-    edited.value = false;
-}
+  todoListStore.edit(props.item.id, text.value);
+  edited.value = false;
+};
 </script>

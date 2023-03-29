@@ -4,10 +4,10 @@ import { defineStore } from "pinia";
 export const useTodoListStore = defineStore("todoList", {
   state: () => ({
     todoList: [] as Array<Item>,
-    currentPage: 0 as Number,
+    currentPage: 0,
     key: "" as string,
     text: "" as string,
-    showOnPage: 5 as Number,
+    showOnPage: 5,
     pages: 0,
   }),
 
@@ -24,7 +24,7 @@ export const useTodoListStore = defineStore("todoList", {
           state.currentPage * state.showOnPage + state.showOnPage
         );
       const results = filterBySearchText(showInCompleteTodoList);
-      state.pages = Number.parseInt(results.length / state.showOnPage);
+      state.pages = Math.ceil(results.length / state.showOnPage);
       return seperateByPage(filterBySearchText(showInCompleteTodoList));
     },
   },
@@ -67,7 +67,7 @@ export const useTodoListStore = defineStore("todoList", {
 
     edit(id: number, text: string) {
       const index = this.todoList.findIndex((item) => item.id === id);
-      console.log(index)
+      console.log(index);
       this.todoList[index].title = text;
     },
 
