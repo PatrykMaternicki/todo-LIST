@@ -2,9 +2,10 @@
 import { storeToRefs } from "pinia";
 import { useTodoListStore } from "@/stores/todoList";
 import Item from "@/components/Item.vue";
+import Searchbar from "@/components/Searchbar.vue";
 
 const todoListStore = useTodoListStore();
-const { showInCompleteTodoList } = storeToRefs(todoListStore);
+const { getList } = storeToRefs(todoListStore);
 todoListStore.get();
 </script>
 <template>
@@ -17,12 +18,8 @@ todoListStore.get();
           md="12"
           class="grey lighten-2 fill-height d-flex flex-column justify-center align-center"
         >
-          <Item
-            :key="item.userId"
-            :item="item"
-            v-for="item in showInCompleteTodoList"
-          >
-          </Item>
+          <Searchbar />
+          <Item :key="item.userId" :item="item" v-for="item in getList"> </Item>
         </v-col>
       </v-row>
     </v-container>
