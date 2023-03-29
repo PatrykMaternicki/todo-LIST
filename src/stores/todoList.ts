@@ -11,18 +11,24 @@ export const useTodoListStore = defineStore("todoList", {
     pages: 0,
   }),
 
+
+
   getters: {
     getList(state) {
+      const min = state.currentPage * state.showOnPage;
+      const max = state.currentPage * state.showOnPage + state.showOnPage;
       const showInCompleteTodoList = this.todoList.filter(
         (item) => !item.completed
       );
       const filterBySearchText = (completeTasks: Array<Item>) =>
         completeTasks.filter((item) => item.title.includes(state.text));
+
       const seperateByPage = (completeTasks: Array<Item>) =>
         completeTasks.slice(
-          state.currentPage * state.showOnPage,
-          state.currentPage * state.showOnPage + state.showOnPage
+          min,
+          max
         );
+
       const results = filterBySearchText(showInCompleteTodoList);
       state.pages = Math.ceil(results.length / state.showOnPage);
       return seperateByPage(filterBySearchText(showInCompleteTodoList));
