@@ -4,9 +4,11 @@ import { defineStore } from "pinia";
 export const useTodoListStore = defineStore("todoList", {
   state: () => ({
     todoList: [] as Array<Item>,
-    page: 1 as Number,
+    currentPage: 0 as Number,
     key: "" as string,
     text: "" as string,
+    showOnPage: 10 as Number,
+    pages: 0,
   }),
 
   getters: {
@@ -15,10 +17,18 @@ export const useTodoListStore = defineStore("todoList", {
         (item) => !item.completed
       );
       const filterBySearchText = (completeTasks: Array<Item>) =>
-        this.text.length > 0
-          ? completeTasks.filter((item) => item.title.includes(state.text))
-          : completeTasks;
-      return filterBySearchText(showInCompleteTodoList);
+        completeTasks.filter((item) => item.title.includes(state.text));
+      const seperateByPage = (completeTasks: Array<Item>) =>
+        completeTasks.slice(
+          state.currentPage * state.showOnPage,
+          state.currentPage * state.showOnPage + state.showOnPage
+        );
+      const results = filterBySearchText(showInCompleteTodoList)
+      console.log(results.length)
+      console.log(state.showOnPage);
+    
+      state.pages = Number.parseInt(results.length/state.showOnPage)
+      return seperateByPage(filterBySearchText(showInCompleteTodoList));
     },
   },
 
@@ -40,6 +50,14 @@ export const useTodoListStore = defineStore("todoList", {
     update(id: number) {
       const index = this.todoList.findIndex((item) => item.id === id);
       this.todoList[index].completed = true;
+    },
+
+    nextPage() {
+      this.currentPage++
+    },
+
+    previousPage() {
+      this.currentPage--
     },
 
     edit(id: number, text: string) {

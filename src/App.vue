@@ -3,6 +3,7 @@ import { storeToRefs } from "pinia";
 import { useTodoListStore } from "@/stores/todoList";
 import Item from "@/components/Item.vue";
 import Searchbar from "@/components/Searchbar.vue";
+import Arrows from "@/components/Arrows.vue";
 
 const todoListStore = useTodoListStore();
 const { getList } = storeToRefs(todoListStore);
@@ -19,7 +20,8 @@ todoListStore.get();
           class="grey lighten-2 fill-height d-flex flex-column justify-center align-center"
         >
           <Searchbar />
-          <Item :key="item.userId" :item="item" v-for="item in getList"> </Item>
+          <Item :key="item.userId" :item="item" v-for="item in getList" />
+          <Arrows />
         </v-col>
       </v-row>
     </v-container>
