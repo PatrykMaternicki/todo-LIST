@@ -23,11 +23,11 @@ export const useTodoListStore = defineStore("todoList", {
           state.currentPage * state.showOnPage,
           state.currentPage * state.showOnPage + state.showOnPage
         );
-      const results = filterBySearchText(showInCompleteTodoList)
-      console.log(results.length)
+      const results = filterBySearchText(showInCompleteTodoList);
+      console.log(results.length);
       console.log(state.showOnPage);
-    
-      state.pages = Number.parseInt(results.length/state.showOnPage)
+
+      state.pages = Number.parseInt(results.length / state.showOnPage);
       return seperateByPage(filterBySearchText(showInCompleteTodoList));
     },
   },
@@ -53,11 +53,11 @@ export const useTodoListStore = defineStore("todoList", {
     },
 
     nextPage() {
-      this.currentPage++
+      this.currentPage++;
     },
 
     previousPage() {
-      this.currentPage--
+      this.currentPage--;
     },
 
     edit(id: number, text: string) {
