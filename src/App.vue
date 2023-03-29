@@ -8,8 +8,9 @@ import Form from "@/components/Form.vue";
 import DarkMode from "@/components/DarkMode.vue";
 import { useAppStore } from "@/stores/app";
 
+const todoListStore = useTodoListStore();
 const appStore = useAppStore();
-const { getList } = storeToRefs(useTodoListStore());
+const { getList } = storeToRefs(todoListStore);
 const { dark } = storeToRefs(appStore);
 todoListStore.get();
 </script>

@@ -67,7 +67,6 @@ export const useTodoListStore = defineStore("todoList", {
 
     edit(id: number, text: string) {
       const index = this.todoList.findIndex((item) => item.id === id);
-      console.log(index);
       this.todoList[index].title = text;
     },
 
