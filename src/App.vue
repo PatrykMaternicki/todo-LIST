@@ -5,13 +5,18 @@ import Item from "@/components/Item.vue";
 import Searchbar from "@/components/Searchbar.vue";
 import Arrows from "@/components/Arrows.vue";
 import Form from "@/components/Form.vue";
+import DarkMode from "@/components/DarkMode.vue";
+import { useAppStore } from "@/stores/app";
 
 const todoListStore = useTodoListStore();
+const appStore = useAppStore();
 const { getList } = storeToRefs(todoListStore);
+const { dark } = storeToRefs(appStore);
 todoListStore.get();
 </script>
 <template>
-  <v-app>
+  <v-app :theme="dark ? 'dark' : 'light'">
+    <DarkMode />
     <v-container fluid pa-0>
       <v-row align="center" justify="center" dense>
         <v-col

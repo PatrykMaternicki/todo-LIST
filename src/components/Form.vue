@@ -16,7 +16,7 @@
       </v-container>
       <div :style="{ width: '60%' }" class="ma-auto">
         <v-btn type="submit" block class="mt-2">Add</v-btn>
-    </div>
+      </div>
     </v-form>
   </div>
 </template>
@@ -26,13 +26,13 @@ import { useTodoListStore } from "@/stores/todoList";
 import { ref } from "vue";
 const rules = [(value: string) => (value ? true : "Title is required")];
 const title = ref("");
-const valid = ref(false)
+const valid = ref(false);
 const form = ref<HTMLFormElement>();
 const todoListStore = useTodoListStore();
 const addNewItem = () => {
-  if(valid.value) {
-    todoListStore.add({title: title.value, userId: 1, completed: false})
-    title.value = ''
+  if (valid.value) {
+    todoListStore.add({ title: title.value, userId: 1, completed: false });
+    title.value = "";
   }
-}
+};
 </script>

@@ -10,6 +10,9 @@ import "@mdi/font/css/materialdesignicons.css";
 import App from "./App.vue";
 
 const vuetify = createVuetify({
+  theme: {
+    defaultTheme: "light",
+  },
   components,
   directives,
 });
